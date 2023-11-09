@@ -94,7 +94,7 @@ class Analyzer:
     def jackpot(self):
         """
         """
-        return(self.game.show_results())
+        return(self.game.show_results().eq(self.game.show_results().iloc[:, 0], axis=0).all(1).sum())
 
     #Method 2: Computes how many times a given face is rolled in each event.
 #     def face_counts(self):
