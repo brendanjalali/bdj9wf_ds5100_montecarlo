@@ -10,7 +10,7 @@ class Die:
     def __init__(self, faces):
         """
         """
-        if not isinstance(faces, np.array):
+        if not isinstance(faces, np.ndarray):
             raise TypeError("Make sure faces is a Numpy Array.")
         if len(faces) != len(np.unique(faces)):
             raise ValueError("Face values must be distinct.")
@@ -21,7 +21,7 @@ class Die:
     def change_weight(self, face_val, weight_val):
         """
         """
-        if face_val not in self._data.index:
+        if face_val not in self._df.index:
             raise IndexError("Face of die doesn't exist")
         if not (isinstance(weight_val, (int, float)) or str(weight_val).isnumeric()):
             raise TypeError("Weight must be new numeric or castable as numeric")
@@ -59,7 +59,7 @@ class Game:
         results = {}
         
         for i, die in enumerate(self.die_list):
-            results{f'die_{i}'} = die.roll(num_rolls)
+            results[f'die_{i}'] = die.roll(num_rolls)
         self._df = pd.DataFrame(results)
         
     #Method 2:
@@ -94,13 +94,13 @@ class Analyzer:
     def jackpot(self):
         """
         """
-        return((self.game.show_results() == self.game.show_results().iloc[:, 0].all(axis=1)).sum())
+        return((self.game.show_results() == self.game.show_results().iloc[:, 0].all()).sum())
 
     #Method 2: Computes how many times a given face is rolled in each event.
     def face_counts(self):
         """
         """
-        return(self.game.show_results().apply(pd.Series.value_counts), axis=1)
+        return(self.game.show_results().apply(pd.Series.value_counts, axis=1).fillna(0))
     
     #Method 3: Computes the distinct combinations of faces rolled, along with their counts
     def combo_counts(self):

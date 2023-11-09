@@ -1,4 +1,4 @@
-from montecarlo import Die, Game, Analyzer
+from Demo.montecarlo import Die, Game, Analyzer
 
 import unittest
 import pandas as pd
@@ -34,7 +34,7 @@ class TestGameMethods(unittest.TestCase):
         die1 = Die(test_faces)
         die2 = Die(test_faces)
         game = Game([die1, die2])
-        self.assertIsInstance(game.dice_list, list)
+        self.assertIsInstance(game.die_list, list)
 
     def test_play(self):
         test_faces = np.array([1, 2, 3, 4, 5, 6])
