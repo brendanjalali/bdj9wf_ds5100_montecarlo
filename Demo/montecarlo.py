@@ -5,6 +5,7 @@ import numpy as np
 # Die class 
 class Die:
     """
+
     """
     # constructor
     def __init__(self, faces):
@@ -97,19 +98,19 @@ class Analyzer:
         return(self.game.show_results().eq(self.game.show_results().iloc[:, 0], axis=0).all(1).sum())
 
     #Method 2: Computes how many times a given face is rolled in each event.
-#     def face_counts(self):
-#         """
-#         """
-#         return(self.game.show_results().apply(pd.Series.value_counts, axis=1))
+    def face_counts(self):
+        """
+        """
+        return(self.game.show_results().apply(pd.Series.value_counts, axis=1))
     
-#     #Method 3: Computes the distinct combinations of faces rolled, along with their counts
-#     def combo_counts(self):
-#         """
-#         """
-#         return(pd.DataFrame(self.game.show_results().apply(lambda row: tuple(row), axis=1).value_counts(), columns=['counts']))
+    #Method 3: Computes the distinct combinations of faces rolled, along with their counts
+    def combo_counts(self):
+        """
+        """
+        return(pd.DataFrame(self.game.show_results().apply(lambda row: tuple(row), axis=1).value_counts(), columns=['counts']))
     
-#     #Method 4: Computes the distinct permutations of faces rolled, along with their counts
-#     def permutation_counts(self):
-#         """
-#         """
-#         return(pd.DataFrame(self.game.show_results().apply(lambda row: ''.join(map(str, row)), axis=1).value_counts(), columns=['counts']))
+    #Method 4: Computes the distinct permutations of faces rolled, along with their counts
+    def permutation_counts(self):
+        """
+        """
+        return(pd.DataFrame(self.game.show_results().apply(lambda row: ''.join(map(str, row)), axis=1).value_counts(), columns=['counts']))
